@@ -94,4 +94,5 @@ require("lazy").setup({
   { "nycrat/rose-pine" },
   { "catppuccin/nvim", name = "catppuccin"},
   { "xiyaowong/nvim-transparent" },
+  { "karb94/neoscroll.nvim" }
 })
