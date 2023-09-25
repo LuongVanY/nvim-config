@@ -91,8 +91,13 @@ require("lazy").setup({
   { "nvim-lualine/lualine.nvim" },
   { "lukas-reineke/indent-blankline.nvim" },
   { dir = "~/personal/repositories/MISC/rose-pine" },
-  { "nycrat/rose-pine" },
-  { "catppuccin/nvim", name = "catppuccin"},
   { "xiyaowong/nvim-transparent" },
-  { "karb94/neoscroll.nvim" }
+  { "karb94/neoscroll.nvim" },
+  { "f-person/git-blame.nvim" },
+  { "projekt0n/caret.nvim" },
+  -- LSP Ui
+  { "glepnir/lspsaga.nvim"},
+  -- Tag
+  { "windwp/nvim-ts-autotag" },
+  { "onsails/lspkind.nvim"}
 })
