@@ -12,6 +12,7 @@ local debug_build_commands = {
   go = "go build",
 }
 
+
 local run_commands = {
   c = "%:p:r.o",
   cpp = "%:p:r.o",
