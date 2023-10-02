@@ -36,7 +36,7 @@ require("lazy").setup({
       { "hrsh7th/cmp-nvim-lua" },
 
       -- Snippets
-      { "L3MON4D3/LuaSnip", version = "2.*" },
+      { "L3MON4D3/LuaSnip",                 version = "2.*" },
       { "rafamadriz/friendly-snippets" },
       { "honza/vim-snippets" },
     },
@@ -46,7 +46,7 @@ require("lazy").setup({
   { "numToStr/Comment.nvim" },
   { "windwp/nvim-autopairs" },
   { "JoosepAlviste/nvim-ts-context-commentstring" },
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+  { "nvim-treesitter/nvim-treesitter",            build = ":TSUpdate" },
   { "nvim-treesitter/nvim-treesitter-context" },
 
   -- navigation
@@ -71,7 +71,7 @@ require("lazy").setup({
   { "nvim-telescope/telescope-dap.nvim" },
 
   -- misc
-  { "kevinhwang91/nvim-bqf", ft = "qf" },
+  { "kevinhwang91/nvim-bqf",                    ft = "qf" },
   { "mbbill/undotree" },
   {
     "iamcco/markdown-preview.nvim",
@@ -96,8 +96,9 @@ require("lazy").setup({
   { "f-person/git-blame.nvim" },
   { "projekt0n/caret.nvim" },
   -- LSP Ui
-  { "glepnir/lspsaga.nvim"},
+  { "nvimdev/lspsaga.nvim" },
   -- Tag
   { "windwp/nvim-ts-autotag" },
-  { "onsails/lspkind.nvim"}
+  { "onsails/lspkind.nvim" },
+  { "hrsh7th/nvim-cmp" }
 })

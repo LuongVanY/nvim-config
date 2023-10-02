@@ -3,6 +3,8 @@ local Remap = require("yluong.keymap")
 local inoremap = Remap.inoremap
 local nnoremap = Remap.nnoremap
 
+local protocol = require('vim.lsp.protocol')
+local status, nvim_lsp = pcall(require, "lspconfig")
 lsp.on_attach(function(client, bufnr)
   -- lsp.default_keymaps({ buffer = bufnr })
   local opts = { buffer = bufnr, silent = true }
@@ -47,6 +49,117 @@ lsp.format_mapping("<leader>m", {
 
 lsp.setup()
 
+protocol.CompletionItemKind = {
+  '', -- Text
+  '', -- Method
+  '', -- Function
+  '', -- Constructor
+  '', -- Field
+  '', -- Variable
+  '', -- Class
+  'ﰮ', -- Interface
+  '', -- Module
+  '', -- Property
+  '', -- Unit
+  '', -- Value
+  '', -- Enum
+  '', -- Keyword
+  '﬌', -- Snippet
+  '', -- Color
+  '', -- File
+  '', -- Reference
+  '', -- Folder
+  '', -- EnumMember
+  '', -- Constant
+  '', -- Struct
+  '', -- Event
+  'ﬦ', -- Operator
+  '', -- TypeParameter
+}
+
+-- Set up completion using nvim_cmp with LSP source
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+nvim_lsp.flow.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+nvim_lsp.tsserver.setup {
+  on_attach = on_attach,
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  cmd = { "typescript-language-server", "--stdio" },
+  capabilities = capabilities
+}
+
+nvim_lsp.sourcekit.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+nvim_lsp.lua_ls.setup {
+  capabilities = capabilities,
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    enable_format_on_save(client, bufnr)
+  end,
+  settings = {
+    Lua = {
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = { 'vim' },
+      },
+
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false
+      },
+    },
+  },
+}
+
+nvim_lsp.tailwindcss.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+nvim_lsp.cssls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+nvim_lsp.astro.setup {
+  on_attach = on_attach,
+  capabilities = capabilities
+}
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = true,
+    update_in_insert = false,
+    virtual_text = { spacing = 4, prefix = "\u{ea71}" },
+    severity_sort = true,
+  }
+)
+
+-- Diagnostic symbols in the sign column (gutter)
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = '●'
+  },
+  update_in_insert = true,
+  float = {
+    source = "always", -- Or "if_many"
+  },
+})
+
 require("mason-nvim-dap").setup({
   ensure_installed = { "python", "cpp" },
   automatic_installation = true,
@@ -55,53 +168,3 @@ require("mason-nvim-dap").setup({
   },
 })
 
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-require("cmp").setup({
-  performance = {
-    debounce = 0,
-    throttle = 0,
-    confirm_resolve_timeout = 0,
-  },
-  preselect = "Item",
-  snippet = {
-    expand = function(args) require("luasnip").lsp_expand(args.body) end,
-  },
-  sources = { { name = "nvim_lsp" }, { name = "luasnip" }, { name = "nvim_lua" } },
-  view = {},
-  window = {
-    completion = {
-      border = "rounded",
-    },
-    documentation = {
-      border = "rounded",
-    },
-  },
-})
-
-local cmp = require("cmp")
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-
-local null_ls = require("null-ls")
-local null_opts = lsp.build_options("null-ls", {})
-
-local txt_formatter = {
-  method = null_ls.methods.FORMATTING,
-  filetypes = { "txt", "text" },
-  generator = null_ls.formatter({
-    command = "txt-format",
-    args = { "$FILENAME" },
-    to_stdin = true,
-    from_stderr = true,
-  }),
-}
-
-null_ls.setup({
-  on_attach = function(client, bufnr) null_opts.on_attach(client, bufnr) end,
-  sources = { txt_formatter },
-})
-
-require("mason-null-ls").setup({
-  ensure_installed = nil,
-  automatic_installation = false,
-  handlers = {},
-})
