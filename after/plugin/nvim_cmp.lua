@@ -30,6 +30,7 @@ end
 --   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 -- end
 
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -38,13 +39,6 @@ cmp.setup({
   },
   mapping = {
     ["<Tab>"] = cmp.mapping({
-      c = function()
-        if cmp.visible() then
-          cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-        else
-          vim.api.nvim_feedkeys(t('<Down>'), 'n', true)
-        end
-      end,
       i = function(fallback)
         if cmp.visible() then
           cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
@@ -61,13 +55,6 @@ cmp.setup({
       end
     }),
     ["<S-Tab>"] = cmp.mapping({
-      c = function()
-        if cmp.visible() then
-          cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-        else
-          vim.api.nvim_feedkeys(t('<Up>'), 'n', true)
-        end
-      end,
       i = function(fallback)
         if cmp.visible() then
           cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
@@ -144,9 +131,11 @@ cmp.setup({
   }),
   formatting = {
     format = lspkind.cmp_format({
-      maxwidth = 50,
+      maxwidth = 100,
+      ellipsis_char = '...',
+      -- mode = 'symbol',
       before = function(entry, vim_item)
-        vim_item = formatForTailwindCSS(entry, vim_item)
+        vim_item.abbr = string.sub(vim_item.abbr, 1, 20)
         return vim_item
       end
     })
