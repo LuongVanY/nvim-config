@@ -1,6 +1,5 @@
 local status, saga = pcall(require, "lspsaga")
 if (not status) then return end
-
 saga.setup({
   ui = {
     border = 'rounded',
@@ -30,3 +29,4 @@ vim.keymap.set('n', 'gr', '<Cmd>Lspsaga rename<CR>', opts)
 
 -- code action
 vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
+-- require("lspsaga.symbol.winbar").get_bar()
