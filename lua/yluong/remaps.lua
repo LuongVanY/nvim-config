@@ -60,3 +60,4 @@ nnoremap("<leader>cr", "<Cmd>Ha<CR>", silent)
 nnoremap("<Tab>", "<Cmd>tabn<CR>", silent)
 nnoremap("<S-Tab>", "<Cmd>tabp<CR>", silent)
 
+nnoremap("<S-t>", "<Cmd>TagbarToggle<CR>", silent)

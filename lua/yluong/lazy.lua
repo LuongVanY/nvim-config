@@ -102,5 +102,8 @@ require("lazy").setup({
   { "onsails/lspkind.nvim" },
   { "hrsh7th/nvim-cmp" },
   -- Tab
-  { "nanozuki/tabby.nvim" }
+  { "nanozuki/tabby.nvim" },
+  -- tabbar
+  { "preservim/tagbar"},
+  { "sergioramos/jsctags"}
 })
