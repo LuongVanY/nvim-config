@@ -100,5 +100,7 @@ require("lazy").setup({
   -- Tag
   { "windwp/nvim-ts-autotag" },
   { "onsails/lspkind.nvim" },
-  { "hrsh7th/nvim-cmp" }
+  { "hrsh7th/nvim-cmp" },
+  -- Tab
+  { "nanozuki/tabby.nvim" }
 })
