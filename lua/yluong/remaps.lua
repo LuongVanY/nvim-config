@@ -55,3 +55,8 @@ nnoremap("<leader>cb", "<Cmd>Build<CR>", silent)
 nnoremap("<leader>cd", "<Cmd>DebugBuild<CR>", silent)
 nnoremap("<leader>cl", "<Cmd>Run<CR>", silent)
 nnoremap("<leader>cr", "<Cmd>Ha<CR>", silent)
+
+--Tab
+nnoremap("<Tab>", "<Cmd>tabn<CR>", silent)
+nnoremap("<S-Tab>", "<Cmd>tabp<CR>", silent)
+
