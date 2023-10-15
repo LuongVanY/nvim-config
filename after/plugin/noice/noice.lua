@@ -1,6 +1,3 @@
-local notify = require("notify")
-notify.setup({ fps = 120, render = "minimal", timeout = 500 })
-
 require("noice").setup({
   cmdline = {
     format = {
