@@ -21,10 +21,9 @@ require("lazy").setup({
       { "neovim/nvim-lspconfig" },
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
-      { "jay-babu/mason-nvim-dap.nvim" },
 
       -- null-ls
-      { "jose-elias-alvarez/null-ls.nvim" },
+      { "nvimtools/none-ls.nvim" },
       { "jay-babu/mason-null-ls.nvim" },
 
       -- Autocompletion
@@ -34,17 +33,25 @@ require("lazy").setup({
       { "saadparwaiz1/cmp_luasnip" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-nvim-lua" },
-
+      { "hrsh7th/cmp-nvim-lsp-signature-help" },
       -- Snippets
-      { "L3MON4D3/LuaSnip",                 version = "2.*" },
+      {
+        "L3MON4D3/LuaSnip",
+        version = "2.*",
+        build = "make install_jsregexp"
+      },
       { "rafamadriz/friendly-snippets" },
       { "honza/vim-snippets" },
+      
     },
   },
 
   -- nice to have
   { "numToStr/Comment.nvim" },
-  { "windwp/nvim-autopairs" },
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+  },
   { "JoosepAlviste/nvim-ts-context-commentstring" },
   { "nvim-treesitter/nvim-treesitter",            build = ":TSUpdate" },
   { "nvim-treesitter/nvim-treesitter-context" },
@@ -96,11 +103,22 @@ require("lazy").setup({
   { "f-person/git-blame.nvim" },
   { "projekt0n/caret.nvim" },
   -- LSP Ui
-  { "nvimdev/lspsaga.nvim" },
+  {
+    "nvimdev/lspsaga.nvim",
+    lazy = true,
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons'     -- optional
+    }
+  },
   -- Tag
   { "windwp/nvim-ts-autotag" },
   { "onsails/lspkind.nvim" },
-  { "hrsh7th/nvim-cmp" },
+  {
+    "hrsh7th/nvim-cmp" ,
+    lazy = true,
+
+  },
   -- Tab
   { "nanozuki/tabby.nvim" },
   -- tabbar

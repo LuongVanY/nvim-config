@@ -1,8 +1,3 @@
-local Remap = require("yluong.keymap")
-local nnoremap = Remap.nnoremap
-
-local silent = { silent = true }
-
 local function my_on_attach(bufnr)
   local api = require("nvim-tree.api")
 
@@ -23,11 +18,11 @@ require("nvim-tree").setup({
   },
   renderer = {
     special_files = {
-      -- "Cargo.toml",
-      -- "Makefile",
-      -- "README.md",
-      -- "readme.md",
-      -- ".gitignore",
+      "Cargo.toml",
+      "Makefile",
+      "README.md",
+      "readme.md",
+      ".gitignore",
     },
   },
   actions = { open_file = { quit_on_open = true } },
@@ -35,7 +30,3 @@ require("nvim-tree").setup({
   git = { enable = true, ignore = false, timeout = 500 },
 })
 
-nnoremap("<leader><tab>", "<Cmd>NvimTreeToggle<CR>", silent)
-nnoremap("<leader>n", "<Cmd>tabnew<CR><Cmd>NvimTreeToggle<CR>", silent)
-nnoremap("<leader>f<tab>", "<Cmd>NvimTreeFindFileToggle<CR>", silent)
-nnoremap("<leader>z", "<Cmd>NvimTreeCollapse<CR>", silent)
