@@ -97,7 +97,6 @@ require("lazy").setup({
   { "laytan/cloak.nvim" },
   { "nvim-lualine/lualine.nvim" },
   { "lukas-reineke/indent-blankline.nvim" },
-  { dir = "~/personal/repositories/MISC/rose-pine" },
   { "xiyaowong/nvim-transparent" },
   { "karb94/neoscroll.nvim" },
   { "f-person/git-blame.nvim" },
@@ -123,5 +122,5 @@ require("lazy").setup({
   { "nanozuki/tabby.nvim" },
   -- tabbar
   { "preservim/tagbar"},
-  { "sergioramos/jsctags"}
+  { "liuchengxu/vista.vim"}
 })

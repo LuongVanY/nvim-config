@@ -1,13 +1,7 @@
-local nnoremap = require("yluong.keymap").nnoremap
+local telescope = require('telescope')
 
-local telescope_builtin = require("telescope.builtin")
-local silent = { silent = true }
-
-nnoremap("<leader>p", telescope_builtin.find_files, silent)
-nnoremap("<leader>x", telescope_builtin.live_grep, silent)
-nnoremap("<leader>b", telescope_builtin.buffers, silent)
-
-require("telescope").setup({
+telescope.load_extension("notify")
+telescope.setup({
   defaults = {
     layout_config = {
       width = 0.85,
@@ -64,5 +58,5 @@ require("telescope").setup({
   },
 })
 
-require("telescope").load_extension("fzf")
-require("telescope").load_extension("lazygit")
+telescope.load_extension("fzf")
+telescope.load_extension("lazygit")
