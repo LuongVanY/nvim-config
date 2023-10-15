@@ -27,7 +27,7 @@ xnoremap(
   [[:<c-u>let temp_variable=@"<CR>gvy:<c-u>let @/='\V<C-R>=escape(@",'/\')<CR>'<CR>:let @"=temp_variable<CR>]],
   silent
 )
-
+nnoremap(";", ":")
 -- Copy Paste
 xnoremap("<leader>y", "\"+y", silent)
 
@@ -49,14 +49,4 @@ nnoremap("<leader>q", "<Cmd>q<CR>")
 nnoremap("<leader><C-o>", "<Cmd>!open %<CR><CR>", silent)
 nnoremap("J", "mzJ`z")
 xnoremap("J", "mzJ`z")
-
--- Running Code
-nnoremap("<leader>cb", "<Cmd>Build<CR>", silent)
-nnoremap("<leader>cd", "<Cmd>DebugBuild<CR>", silent)
-nnoremap("<leader>cl", "<Cmd>Run<CR>", silent)
-nnoremap("<leader>cr", "<Cmd>Ha<CR>", silent)
-
---Tab
-nnoremap("<Tab>", "<Cmd>tabn<CR>", silent)
-nnoremap("<S-Tab>", "<Cmd>tabp<CR>", silent)
 

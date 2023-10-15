@@ -1,7 +1,11 @@
+local nnoremap = require("yluong.keymap").nnoremap
+
 vim.opt.sessionoptions = 'curdir,folds,globals,help,tabpages,terminal,winsize'
 vim.o.showtabline = 2
 
-local theme = {
+local silent = {silent = true}
+
+ local theme = {
   fill = 'TabLineFill',
   -- Also you can do this: fill = { fg='#f2e9de', bg='#907aa9', style='italic' }
   head = 'TabLine',
@@ -47,4 +51,7 @@ require('tabby.tabline').set(function(line)
     hl = theme.fill,
   }
 end)
+
+nnoremap("<Tab>", "<Cmd>tabn<CR>", silent)
+nnoremap("<S-Tab>", "<Cmd>tabp<CR>", silent)
 

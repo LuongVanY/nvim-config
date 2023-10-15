@@ -8,7 +8,6 @@ local status, nvim_lsp = pcall(require, "lspconfig")
 lsp.on_attach(function(client, bufnr)
   -- lsp.default_keymaps({ buffer = bufnr })
   local opts = { buffer = bufnr, silent = true }
-
   nnoremap("<leader>.", function() vim.lsp.buf.code_action() end, opts)
   nnoremap("<leader>rn", function() vim.lsp.buf.rename() end, opts)
   nnoremap("<leader>fi", function() vim.lsp.buf.implementation() end, opts)
@@ -48,34 +47,6 @@ lsp.format_mapping("<leader>m", {
 })
 
 lsp.setup()
-
-protocol.CompletionItemKind = {
-  '', -- Text
-  '', -- Method
-  '', -- Function
-  '', -- Constructor
-  '', -- Field
-  '', -- Variable
-  '', -- Class
-  'ﰮ', -- Interface
-  '', -- Module
-  '', -- Property
-  '', -- Unit
-  '', -- Value
-  '', -- Enum
-  '', -- Keyword
-  '﬌', -- Snippet
-  '', -- Color
-  '', -- File
-  '', -- Reference
-  '', -- Folder
-  '', -- EnumMember
-  '', -- Constant
-  '', -- Struct
-  '', -- Event
-  'ﬦ', -- Operator
-  '', -- TypeParameter
-}
 
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -119,10 +90,6 @@ nvim_lsp.lua_ls.setup {
   },
 }
 
-nvim_lsp.tailwindcss.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
 
 nvim_lsp.cssls.setup {
   on_attach = on_attach,
@@ -157,14 +124,6 @@ vim.diagnostic.config({
   update_in_insert = true,
   float = {
     source = "always", -- Or "if_many"
-  },
-})
-
-require("mason-nvim-dap").setup({
-  ensure_installed = { "python", "cpp" },
-  automatic_installation = true,
-  handlers = {
-    function(config) require("mason-nvim-dap").default_setup(config) end,
   },
 })
 
