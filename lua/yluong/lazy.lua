@@ -130,5 +130,10 @@ require("lazy").setup({
     setup = function (_, opts)
       require("ibl").setup()
     end,
-  }
+  },
+
+  {
+    "ggandor/leap.nvim",
+  },
+
 })
