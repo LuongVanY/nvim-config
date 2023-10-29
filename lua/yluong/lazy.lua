@@ -21,6 +21,7 @@ require("lazy").setup({
       { "neovim/nvim-lspconfig" },
       { "williamboman/mason.nvim" },
       { "williamboman/mason-lspconfig.nvim" },
+      { "jay-babu/mason-nvim-dap.nvim" },
 
       -- null-ls
       { "nvimtools/none-ls.nvim" },
@@ -42,7 +43,6 @@ require("lazy").setup({
       },
       { "rafamadriz/friendly-snippets" },
       { "honza/vim-snippets" },
-      
     },
   },
 
@@ -122,5 +122,13 @@ require("lazy").setup({
   { "nanozuki/tabby.nvim" },
   -- tabbar
   { "preservim/tagbar"},
-  { "liuchengxu/vista.vim"}
+  { "liuchengxu/vista.vim"},
+  {
+    "lukas-reineke/indent-blankline.nvim", 
+    main = "ibl",
+    opts = {},
+    setup = function (_, opts)
+      require("ibl").setup()
+    end,
+  }
 })
