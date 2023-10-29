@@ -19,53 +19,29 @@ lsp.on_attach(function(client, bufnr)
   inoremap("<C-j>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
-lsp.format_mapping("<leader>m", {
-  format_opts = {
-    async = false,
-    timeout_ms = 10000,
-  },
-  servers = {
-    ["rust_analyzer"] = { "rust" },
-    ["gopls"] = { "go" },
-    ["pylsp"] = { "python" },
-    ["null-ls"] = {
-      "lua",
-      "c",
-      "cpp",
-      "json",
-      "javascript",
-      "typescript",
-      "typescriptreact",
-      "markdown",
-      "css",
-      "sass",
-      "scss",
-      "txt",
-      "text",
-    },
-  },
-})
-
 lsp.setup()
 
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-nvim_lsp.flow.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+-- capabilities.textDocument.completion.completionItem = {
+--   snippetSupport = true,
+--   preselectSupport = true,
+--   insertReplaceSupport = true,
+--   labelDetailsSupport = true,
+--   deprecatedSupport = true,
+--   commitCharactersSupport = true,
+-- }
 
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
   cmd = { "typescript-language-server", "--stdio" },
-  capabilities = capabilities
-}
-
-nvim_lsp.sourcekit.setup {
-  on_attach = on_attach,
   capabilities = capabilities,
+  settings = {
+    completions = {
+      completeFunctionCalls = true
+    }
+  },
 }
 
 nvim_lsp.lua_ls.setup {
@@ -92,11 +68,6 @@ nvim_lsp.lua_ls.setup {
 
 
 nvim_lsp.cssls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
-
-nvim_lsp.astro.setup {
   on_attach = on_attach,
   capabilities = capabilities
 }
