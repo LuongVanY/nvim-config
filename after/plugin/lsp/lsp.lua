@@ -5,6 +5,9 @@ local nnoremap = Remap.nnoremap
 
 local protocol = require('vim.lsp.protocol')
 local status, nvim_lsp = pcall(require, "lspconfig")
+-- local navbuddy = require("nvim-navbuddy")
+require("nvim-navbuddy").setup()
+
 lsp.on_attach(function(client, bufnr)
   -- lsp.default_keymaps({ buffer = bufnr })
   local opts = { buffer = bufnr, silent = true }
