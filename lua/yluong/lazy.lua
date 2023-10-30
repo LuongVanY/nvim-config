@@ -144,5 +144,6 @@ require("lazy").setup({
     },
     cmp = { "Navbuddy" },
   },
+  {"sainnhe/everforest"}
 
 })

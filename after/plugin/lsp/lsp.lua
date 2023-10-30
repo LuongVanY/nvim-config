@@ -6,32 +6,7 @@ local nnoremap = Remap.nnoremap
 local protocol = require('vim.lsp.protocol')
 local status, nvim_lsp = pcall(require, "lspconfig")
 -- local navbuddy = require("nvim-navbuddy")
-local navic = require("nvim-navic")
 require("nvim-navbuddy").setup()
-local navbuddy = require("nvim-navbuddy")
-
-
-local on_attach = function(client, bufnr)
-  if (client.name == "tsserver") or (client.name =="volar" ) or (client.name == "tailwindcss") then
-    client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
-    -- client.server_capabilities.documentFormattingProvider = true
-    client.server_capabilities.documentRangeFormattingProvider = false
-  else
-    client.server_capabilities.documentFormattingProvider = true -- 0.8 and later
-    client.server_capabilities.documentRangeFormattingProvider = true
-  end
-
-
-  if client.server_capabilities.documentSymbolProvider then
-    navic.attach(client, bufnr)
-    navbuddy.attach(client, bufnr)
-  end
-end
-
-
--- local on_attach = function(client, bufnr)
---   navbuddy.attach(client, bufnr)
--- end
 
 lsp.on_attach(function(client, bufnr)
   -- lsp.default_keymaps({ buffer = bufnr })
