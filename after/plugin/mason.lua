@@ -4,7 +4,7 @@ local status2, lspconfig = pcall(require, "mason-lspconfig")
 if (not status2) then return end
 
 mason.setup({
-  ensure_installed = { "tsserver", "css" },
+  ensure_installed = { "typescript-language-server", "css-lsp" },
   automatic_installation = true,
   handlers = {
     function(config) require("mason-nvim-dap").default_setup(config) end,

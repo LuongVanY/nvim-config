@@ -120,11 +120,8 @@ require("lazy").setup({
   },
   -- Tab
   { "nanozuki/tabby.nvim" },
-  -- tabbar
-  { "preservim/tagbar"},
-  { "liuchengxu/vista.vim"},
   {
-    "lukas-reineke/indent-blankline.nvim", 
+    "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     opts = {},
     setup = function (_, opts)
@@ -134,6 +131,18 @@ require("lazy").setup({
 
   {
     "ggandor/leap.nvim",
+  },
+  {
+    "simrat39/symbols-outline.nvim",
+    cmd = {"SymbolsOutline", "SymbolsOutlineOpen", "SymbolsOutlineClose"},
+  },
+  {
+    "SmiteshP/nvim-navbuddy",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "SmiteshP/nvim-navic",
+    },
+    cmp = { "Navbuddy" },
   },
 
 })
