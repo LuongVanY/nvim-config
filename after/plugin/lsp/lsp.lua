@@ -5,6 +5,7 @@ local nnoremap = Remap.nnoremap
 
 local protocol = require('vim.lsp.protocol')
 local status, nvim_lsp = pcall(require, "lspconfig")
+local util = require 'lspconfig.util'
 -- local navbuddy = require("nvim-navbuddy")
 require("nvim-navbuddy").setup()
 
@@ -37,14 +38,21 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
   cmd = { "typescript-language-server", "--stdio" },
+  hostInfo = "neovim",
   capabilities = capabilities,
+  single_file_support = true,
   settings = {
     completions = {
       completeFunctionCalls = true
     }
   },
+  root_dir = function(fname)
+    return util.root_pattern 'tsconfig.json'(fname)
+    or util.root_pattern('package.json', 'jsconfig.json', '.git')(fname)
+  end,
+
 }
 
 nvim_lsp.lua_ls.setup {
