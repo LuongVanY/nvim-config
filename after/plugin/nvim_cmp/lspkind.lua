@@ -2,10 +2,7 @@ local status, lspkind = pcall(require, "lspkind")
 if (not status) then return end
 
 lspkind.init({
-  -- enables text annotations
-  --
-  -- default: true
-  mode = 'symbol',
+  -- enables ,
 
   -- default symbol map
   -- can be either 'default' (requires nerd-fonts font) or

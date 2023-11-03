@@ -5,7 +5,6 @@ local nnoremap = Remap.nnoremap
 
 local protocol = require('vim.lsp.protocol')
 local status, nvim_lsp = pcall(require, "lspconfig")
-local util = require 'lspconfig.util'
 -- local navbuddy = require("nvim-navbuddy")
 require("nvim-navbuddy").setup()
 
@@ -19,48 +18,65 @@ lsp.on_attach(function(client, bufnr)
   nnoremap("<leader>ff", function() vim.lsp.buf.definition() end, opts)
   nnoremap("<leader>fF", function() vim.lsp.buf.declaration() end, opts)
   nnoremap("K", function() vim.lsp.buf.hover() end, opts)
-  -- inoremap("<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-  inoremap("<C-j>", function() vim.lsp.buf.signature_help() end, opts)
+  inoremap("<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+  -- inoremap("<C-j>", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
 lsp.setup()
 
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
--- capabilities.textDocument.completion.completionItem = {
---   snippetSupport = true,
---   preselectSupport = true,
---   insertReplaceSupport = true,
---   labelDetailsSupport = true,
---   deprecatedSupport = true,
---   commitCharactersSupport = true,
--- }
 
-nvim_lsp.tsserver.setup {
-  on_attach = on_attach,
+nvim_lsp.vtsls.setup {
+  cmd = { "vtsls", "--stdio" },
   filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-  cmd = { "typescript-language-server", "--stdio" },
-  hostInfo = "neovim",
-  capabilities = capabilities,
   single_file_support = true,
+  handlers = {
+    source_definition = function(err, locations) end,
+    file_references = function(err, locations) end,
+    code_action = function(err, actions) end,
+  },
+  -- automatically trigger renaming of extracted symbol
+  refactor_auto_rename = true,
   settings = {
-    completions = {
-      completeFunctionCalls = true
+    typescript = {
+      inlayHints = {
+        parameterNames = { enabled = "literals" },
+        parameterTypes = { enabled = true },
+        variableTypes = { enabled = true },
+        propertyDeclarationTypes = { enabled = true },
+        functionLikeReturnTypes = { enabled = true },
+        enumMemberValues = { enabled = true },
+      }
+    },
+  }
+}
+
+nvim_lsp.denols.setup {
+  cmd = { "deno", "lsp" },
+  cmd_env = {
+    NO_COLOR = true
+},
+  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", 'markdown', },
+  settings = {
+    deno = {
+      enable = true,
+      suggest = {
+        imports = {
+          hosts = {
+            ["https://crux.land"] = true,
+            ["https://deno.land"] = true,
+            ["https://x.nest.land"] = true
+          }
+        }
+      }
     }
   },
-  root_dir = function(fname)
-    return util.root_pattern 'tsconfig.json'(fname)
-    or util.root_pattern('package.json', 'jsconfig.json', '.git')(fname)
-  end,
-
 }
 
 nvim_lsp.lua_ls.setup {
   capabilities = capabilities,
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    enable_format_on_save(client, bufnr)
-  end,
+  on_attach =  on_attach,
   settings = {
     Lua = {
       diagnostics = {
@@ -76,7 +92,6 @@ nvim_lsp.lua_ls.setup {
     },
   },
 }
-
 
 nvim_lsp.cssls.setup {
   on_attach = on_attach,
