@@ -1,4 +1,6 @@
 lazy-lock.json
 catppuccin/
+undodir/
 # Exceptions
 !.gitignore
+.DS_Store
