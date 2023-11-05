@@ -12,6 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+  defaults = { lazy = true },
   -- lsp
   {
     "VonHeikemen/lsp-zero.nvim",
@@ -30,6 +31,7 @@ require("lazy").setup({
       -- Autocompletion
       { "hrsh7th/nvim-cmp" },
       { "hrsh7th/cmp-buffer" },
+
       { "hrsh7th/cmp-path" },
       { "saadparwaiz1/cmp_luasnip" },
       { "hrsh7th/cmp-nvim-lsp" },
@@ -159,6 +161,8 @@ require("lazy").setup({
     },
     cmp = { "Navbuddy" },
   },
-  {"sainnhe/everforest"}
+  {"sainnhe/everforest"},
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  { "HiPhish/rainbow-delimiters.nvim" }
 
 })

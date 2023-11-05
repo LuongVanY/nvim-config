@@ -13,8 +13,11 @@ end
 require("nvim-tree").setup({
   on_attach = my_on_attach,
   view = {
-    side = "right",
+    side = "left",
     width = 40,
+  },
+  live_filter = {
+    prefix = "   "
   },
   renderer = {
     special_files = {

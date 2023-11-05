@@ -50,3 +50,8 @@ nnoremap("<leader><C-o>", "<Cmd>!open %<CR><CR>", silent)
 nnoremap("J", "mzJ`z")
 xnoremap("J", "mzJ`z")
 
+--Split window
+nnoremap( "ss", "<Cmd>:split<CR><C-w>")
+nnoremap( "sv", "<Cmd>:vsplit<CR><C-l>")
+nnoremap( "qq", "<C-w>o")
+
