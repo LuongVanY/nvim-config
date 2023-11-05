@@ -163,6 +163,7 @@ require("lazy").setup({
   },
   {"sainnhe/everforest"},
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-  { "HiPhish/rainbow-delimiters.nvim" }
+  { "HiPhish/rainbow-delimiters.nvim" },
+  { "windwp/nvim-ts-autotag"}
 
 })

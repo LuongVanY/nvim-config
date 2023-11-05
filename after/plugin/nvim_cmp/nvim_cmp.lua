@@ -23,6 +23,12 @@ cmp.setup({
   --     compare.order,
   --   },
   -- },
+  performance = {
+    debounce = 0,
+    throttle = 0,
+    confirm_resolve_timeout = 0,
+  },
+
 
   enabled = function()
     -- disable completion in comments
