@@ -1,33 +1,15 @@
-local lsp = require("lsp-zero").preset({})
-local Remap = require("yluong.keymap")
-local inoremap = Remap.inoremap
-local nnoremap = Remap.nnoremap
-
-local protocol = require('vim.lsp.protocol')
 local status, nvim_lsp = pcall(require, "lspconfig")
--- local navbuddy = require("nvim-navbuddy")
-require("nvim-navbuddy").setup()
-
-lsp.on_attach(function(client, bufnr)
-  -- lsp.default_keymaps({ buffer = bufnr })
-  local opts = { buffer = bufnr, silent = true }
-  nnoremap("<leader>.", function() vim.lsp.buf.code_action() end, opts)
-  nnoremap("<leader>rn", function() vim.lsp.buf.rename() end, opts)
-  nnoremap("<leader>fi", function() vim.lsp.buf.implementation() end, opts)
-  nnoremap("<leader>fr", function() vim.lsp.buf.references() end, opts)
-  nnoremap("<leader>ff", function() vim.lsp.buf.definition() end, opts)
-  nnoremap("<leader>fF", function() vim.lsp.buf.declaration() end, opts)
-  nnoremap("K", function() vim.lsp.buf.hover() end, opts)
-  inoremap("<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-  -- inoremap("<C-j>", function() vim.lsp.buf.signature_help() end, opts)
-end)
-
-lsp.setup()
+local navbuddy = require("nvim-navbuddy")
 
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local on_attach = function(client, bufnr)
+  navbuddy.attach(client, bufnr)
+end
+
 
 nvim_lsp.vtsls.setup {
+  on_attach = on_attach,
   cmd = { "vtsls", "--stdio" },
   filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
   single_file_support = true,
@@ -53,6 +35,7 @@ nvim_lsp.vtsls.setup {
 }
 
 nvim_lsp.denols.setup {
+  on_attach = on_attach,
   cmd = { "deno", "lsp" },
   cmd_env = {
     NO_COLOR = true

@@ -1,3 +1,4 @@
+local GetOsPath = require("yluong.utils")
 local options = {
   autoindent = true,
   smartindent = true,
@@ -30,7 +31,7 @@ local options = {
   backup = false,
   writebackup = false,
   swapfile = false,
-  undodir = os.getenv("HOME") .. "/.vim/undodir",
+  undodir = GetOsPath("undodir"),
   undofile = true,
 
   -- colorcolumn = "80",
@@ -52,5 +53,6 @@ vim.opt.shortmess:append("IsF")
 -- vim.o.shortmess = "filnxstToOFS"
 
 for option, value in pairs(options) do
+  print(value, option)
   vim.opt[option] = value
 end
