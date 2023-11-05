@@ -57,8 +57,8 @@ local M = {
     Event = { icon = "", hl = "@type" },
     Operator = { icon = "󰆕", hl = "@operator" },
     TypeParameter = { icon = "󰊄", hl = "@parameter" },
-    Component = { icon = "", hl = "@function" },
-    Fragment = { icon = "", hl = "@constant" },
+    Component = { icon = "󰯳", hl = "@function" },
+    Fragment = { icon = "󰯼", hl = "@constant" },
   },
 }
 

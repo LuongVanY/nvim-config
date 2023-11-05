@@ -1,10 +1,17 @@
 local status, nvim_lsp = pcall(require, "lspconfig")
 local navbuddy = require("nvim-navbuddy")
+local navic = require("nvim-navic")
+require("barbecue").setup({
+  attach_navic = false, -- prevent barbecue from automatically attaching nvim-navic
+})
 
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local on_attach = function(client, bufnr)
   navbuddy.attach(client, bufnr)
+  if client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  end
 end
 
 
