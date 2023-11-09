@@ -1,5 +1,5 @@
 require('cinnamon').setup {
-  extra_keymaps = true,
+  extra_keymaps = false,
   override_keymaps = true,
   max_length = 500,
   scroll_limit = -1,
@@ -18,7 +18,6 @@ vim.keymap.set({ 'n', 'x' }, '<PageUp>', "<Cmd>lua Scroll('<C-b>', 1, 1)<CR>")
 vim.keymap.set({ 'n', 'x' }, '<PageDown>', "<Cmd>lua Scroll('<C-f>', 1, 1)<CR>")
 
 -- EXTRA_KEYMAPS:
-
 
 -- Start/end of line:
 vim.keymap.set({ 'n', 'x' }, '0', "<Cmd>lua Scroll('0')<CR>")
