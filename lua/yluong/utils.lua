@@ -1,6 +1,6 @@
 
 local currentOS = vim.loop.os_uname().sysname
-local osHome = os.getenv("HOME")
+local osHome = currentOS == "Darwin" and  os.getenv("HOME") or os.getenv("UserProfile")
 
 local function GetOsPath(x)
   local path = ''

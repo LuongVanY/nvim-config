@@ -8,6 +8,10 @@ local function my_on_attach(bufnr)
   api.config.mappings.default_on_attach(bufnr)
 
   vim.keymap.set("n", "z", api.tree.change_root_to_node, opts("CD"))
+  vim.keymap.set("n", "sv", api.node.open.vertical, opts("Open Vertical"))
+  vim.keymap.set("n", "ss", api.node.open.horizontal, opts("Open Horizontal"))
+
+
 end
 
 require("nvim-tree").setup({

@@ -12,7 +12,7 @@ nnoremap('gf', '<Cmd>Lspsaga goto_type_definition<CR>', opts)
 inoremap('<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 nnoremap('gp', '<Cmd>Lspsaga peek_definition<CR>', opts)
 nnoremap('gr', '<Cmd>Lspsaga rename<CR>', opts)
-vim.keymap.set({'n','t'}, '<C-i>', '<cmd>Lspsaga term_toggle<CR>')
+vim.keymap.set({'n','t'}, '<C-\\>', '<cmd>Lspsaga term_toggle<CR>')
 
 -- code action
 vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")

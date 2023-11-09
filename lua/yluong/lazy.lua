@@ -176,6 +176,8 @@ require("lazy").setup({
     opts = {
       -- configurations go here
     },
-  }
+  },
+  {"miversen33/sunglasses.nvim", config = true}
+
 
 })
