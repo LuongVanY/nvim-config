@@ -177,7 +177,36 @@ require("lazy").setup({
       -- configurations go here
     },
   },
-  {"miversen33/sunglasses.nvim", config = true}
+  {"miversen33/sunglasses.nvim", config = true},
+  {
+    'mawkler/modicator.nvim',
+    dependencies = 'mawkler/onedark.nvim', -- Add your colorscheme plugin here
+    init = function()
+      -- These are required for Modicator to work
+      vim.o.cursorline = true
+      vim.o.number = true
+      vim.o.termguicolors = true
+    end,
+    opts = {}
+  },
+  {
+    'declancm/cinnamon.nvim',
+    config = function() require('cinnamon').setup() end
 
+  },
 
+  {
+    'gorbit99/codewindow.nvim',
+    config = function()
+      local codewindow = require('codewindow')
+      codewindow.setup()
+      codewindow.apply_default_keybinds()
+    end,
+  },
+  {
+    "nvim-focus/focus.nvim"
+  },
+  {
+    "RRethy/vim-illuminate"
+  },
 })
