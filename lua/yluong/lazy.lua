@@ -34,7 +34,6 @@ require("lazy").setup({
 
       { "hrsh7th/cmp-path" },
       { "saadparwaiz1/cmp_luasnip" },
-      { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-nvim-lua" },
       { "hrsh7th/cmp-nvim-lsp-signature-help" },
       -- Snippets
@@ -102,7 +101,6 @@ require("lazy").setup({
   { "xiyaowong/nvim-transparent" },
   { "karb94/neoscroll.nvim" },
   { "f-person/git-blame.nvim" },
-  { "projekt0n/caret.nvim" },
   -- LSP Ui
   {
     "nvimdev/lspsaga.nvim",
@@ -162,7 +160,7 @@ require("lazy").setup({
     cmp = { "Navbuddy" },
   },
   {"sainnhe/everforest"},
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  -- { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   { "HiPhish/rainbow-delimiters.nvim" },
   { "windwp/nvim-ts-autotag"},
   {
@@ -204,9 +202,15 @@ require("lazy").setup({
     end,
   },
   {
-    "nvim-focus/focus.nvim"
-  },
-  {
     "RRethy/vim-illuminate"
   },
+  {
+	"robitx/gp.nvim",
+  },
+  {
+    "craftzdog/solarized-osaka.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  }
 })

@@ -55,3 +55,5 @@ nnoremap( "ss", "<Cmd>:split<CR><C-w>")
 nnoremap( "sv", "<Cmd>:vsplit<CR><C-l>")
 nnoremap( "qq", "<C-w>o")
 
+inoremap("<C-e>", "<C-X><C-E>")
+inoremap("<C-y>", "<C-X><C-Y>")
