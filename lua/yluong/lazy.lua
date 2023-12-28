@@ -34,6 +34,7 @@ require("lazy").setup({
 
       { "hrsh7th/cmp-path" },
       { "saadparwaiz1/cmp_luasnip" },
+      { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-nvim-lua" },
       { "hrsh7th/cmp-nvim-lsp-signature-help" },
       -- Snippets
@@ -101,6 +102,7 @@ require("lazy").setup({
   { "xiyaowong/nvim-transparent" },
   { "karb94/neoscroll.nvim" },
   { "f-person/git-blame.nvim" },
+  -- { "projekt0n/caret.nvim" },
   -- LSP Ui
   {
     "nvimdev/lspsaga.nvim",
