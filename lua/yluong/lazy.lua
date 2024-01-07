@@ -163,7 +163,7 @@ require("lazy").setup({
   },
   {"sainnhe/everforest"},
   -- { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-  { "HiPhish/rainbow-delimiters.nvim" },
+  -- { "HiPhish/rainbow-delimiters.nvim" },
   { "windwp/nvim-ts-autotag"},
   {
     "utilyre/barbecue.nvim",
@@ -189,11 +189,6 @@ require("lazy").setup({
     end,
     opts = {}
   },
-  {
-    'declancm/cinnamon.nvim',
-    config = function() require('cinnamon').setup() end
-
-  },
 
   {
     'gorbit99/codewindow.nvim',
@@ -205,9 +200,6 @@ require("lazy").setup({
   },
   {
     "RRethy/vim-illuminate"
-  },
-  {
-	"robitx/gp.nvim",
   },
   {
     "craftzdog/solarized-osaka.nvim",
