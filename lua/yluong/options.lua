@@ -45,6 +45,8 @@ local options = {
   titlestring = "Neovim - %t",
   guifont = "MesloLGS NF:h18",
   -- clipboard = "unnamedplus",
+  lazyredraw = true,
+  regexpengine = 1,
 }
 
 -- vim.opt.nrformats:append("alpha") -- increment letters
