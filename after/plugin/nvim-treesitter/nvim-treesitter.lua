@@ -21,7 +21,7 @@ ts.setup {
   autotag = {
     enable = false,
   },
-  context_commentstring = {
+  ts_context_commentstring = {
     enable         = true,
     enable_autocmd = false,
   },
